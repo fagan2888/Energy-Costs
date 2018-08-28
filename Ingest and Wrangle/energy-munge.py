@@ -5,16 +5,17 @@ import glob
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 
+pwd = ''
 
 params = {
     'dbname':'energycosts',
     'user':'energycosts',
-    'password':'Georgetown2018!',
+    'password':pwd, #We'll send this around to the faculty
     'host':'georgetownenergycosts.cr1legfnv0nf.us-east-1.rds.amazonaws.com',
     'port': 5432
 }
 
-engine = create_engine('postgresql+psycopg2://energycosts:Georgetown2018!@georgetownenergycosts.cr1legfnv0nf.us-east-1.rds.amazonaws.com:5432/energycosts')
+engine = create_engine('postgresql+psycopg2://energycosts:'+pwd+'@georgetownenergycosts.cr1legfnv0nf.us-east-1.rds.amazonaws.com:5432/energycosts')
 
 zcta = pd.read_sql_table('zip_to_zcta',engine)
 zipdens = pd.read_sql_table('zipdens', engine)
